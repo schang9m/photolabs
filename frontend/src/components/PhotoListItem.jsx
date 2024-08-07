@@ -14,14 +14,15 @@ const PhotoListItem = (props) => {
       alt={`${username}'s picture`} 
       id={id}
       className="photo-list__image"/>
+      <div className="photo-list__user-details">
+        <img src={profile} 
+        alt={`${username}'s profile`} 
+        className='photo-list__user-profile'/>
 
-      <img src={profile} 
-      alt={`${username}'s profile`} 
-      className='photo-list__user-profile'/>
+        <p className="photo-list__user-info">{username}</p>
 
-      <p className="photo-list__user-info">{username}</p>
-
-      <p className="photo-list__user-location">{`${location.city}, ${location.country}`}</p>
+        <p className="photo-list__user-location">{`${location.city}, ${location.country}`}</p>
+      </div>
 
     </div>
   )
