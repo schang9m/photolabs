@@ -7,7 +7,7 @@ import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
   /* Insert React */
-  const {id, location, imageSource, username, profile} = props;
+  const {id, location, imageSource, username, profile} = props.photo;
   return (
     <>
       <img src={imageSource} 
