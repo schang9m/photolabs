@@ -1,11 +1,8 @@
 import React from 'react';
 
-import PhotoList from 'components/PhotoList';
 import './App.scss';
-import TopicList from 'components/TopicList';
-import TopNavigation from 'components/TopNavigationBar';
 
-
+import HomeRoute from 'components/HomeRoute';
 // const photoArr = new Array(3).fill(sampleDataForPhotoListItem)
 
 // Note: Rendering a single component to build components in isolation
@@ -18,9 +15,7 @@ const App = () => {
         </>
       }
       )} */}
-      <TopNavigation/>
-      <PhotoList/>
-
+      <HomeRoute/>
     </div>
   );
 };
