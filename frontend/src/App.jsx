@@ -19,7 +19,9 @@ const App = () => {
   return (
     <div className="App">
       {photoArr.map((photo, index) => {
-        return <PhotoListItem key={index} photo={photo} />
+        return <>
+          <PhotoListItem key={index} photo={photo} />
+        </>
       }
       )}
     </div>
