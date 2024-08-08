@@ -3,6 +3,7 @@ import React from 'react';
 import PhotoList from 'components/PhotoList';
 import './App.scss';
 import TopicList from 'components/TopicList';
+import TopNavigation from 'components/TopNavigationBar';
 
 
 // const photoArr = new Array(3).fill(sampleDataForPhotoListItem)
@@ -17,7 +18,7 @@ const App = () => {
         </>
       }
       )} */}
-      <TopicList/>
+      <TopNavigation/>
       <PhotoList/>
 
     </div>
