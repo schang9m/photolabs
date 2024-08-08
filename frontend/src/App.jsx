@@ -1,6 +1,8 @@
 import React from 'react';
 
 import './App.scss';
+import photos from "mocks/photos";
+import topics from "mocks/topics";
 
 import HomeRoute from 'components/HomeRoute';
 // const photoArr = new Array(3).fill(sampleDataForPhotoListItem)
@@ -15,7 +17,7 @@ const App = () => {
         </>
       }
       )} */}
-      <HomeRoute/>
+      <HomeRoute photos={photos} topics={topics}/>
     </div>
   );
 };
