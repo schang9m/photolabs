@@ -2,6 +2,7 @@ import React from 'react';
 
 import PhotoList from 'components/PhotoList';
 import './App.scss';
+import TopicList from 'components/TopicList';
 
 
 // const photoArr = new Array(3).fill(sampleDataForPhotoListItem)
@@ -16,6 +17,7 @@ const App = () => {
         </>
       }
       )} */}
+      <TopicList/>
       <PhotoList/>
 
     </div>
