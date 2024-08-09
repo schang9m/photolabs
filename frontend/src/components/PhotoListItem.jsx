@@ -7,20 +7,25 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   /* Insert React */
-  const {id, location, imageSource, username, profile, favoritesPhoto} = props;
+  const {id, location, imageSource, user, favoritesPhoto, similarPhotos, openModal} = props;
+  const fullimg = imageSource.full;
+  const handleClick = () => {
+    openModal({id, location, fullimg, user, similarPhotos})
+  }
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handleClick}>
       <PhotoFavButton id={id} favoritesPhoto={favoritesPhoto}/>
-      <img src={imageSource} 
-      alt={`${username}'s picture`} 
+      <img src={imageSource.regular} 
+      alt={`${user.username}'s picture`} 
       id={id}
-      className="photo-list__image"/>
+      className="photo-list__image"
+      />
       <div className="photo-list__user-details">
-        <img src={profile} 
-        alt={`${username}'s profile`} 
+        <img src={user.profile} 
+        alt={`${user.username}'s profile`} 
         className='photo-list__user-profile'/>
 
-        <p className="photo-list__user-info">{username}</p>
+        <p className="photo-list__user-info">{user.username}</p>
 
         <p className="photo-list__user-location">{`${location.city}, ${location.country}`}</p>
       </div>
