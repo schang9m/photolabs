@@ -4,8 +4,9 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const [favorite, setFavorite] = useState(false);
-  const {favoritesPhoto, id} = props;
+  const {favoritesPhoto, id, favorites=[]} = props;
+  console.log(favorites.includes(id))
+  const [favorite, setFavorite] = useState(favorites.includes(id));
   const handleClick = () => {
     favoritesPhoto(id, !favorite);
     setFavorite(prevFavorite => !prevFavorite);
@@ -15,7 +16,7 @@ function PhotoFavButton(props) {
     <div className="photo-list__fav-icon" onClick={() => handleClick()}>
       <div className="photo-list__fav-icon-svg" >
         {/* Insert React */}
-        <FavIcon selected={favorite}/> {/* what does the displayAlert do?*/}
+        <FavIcon selected={favorite}/>
       </div>
     </div>
   );

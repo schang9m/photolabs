@@ -2,9 +2,11 @@ import React from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
+import PhotoList from 'components/PhotoList';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-  const { photo, onClose } = props
+  const { photo, onClose, favoritesPhoto, favorites } = props
   if (!photo) return null;
   
   return (
@@ -17,8 +19,7 @@ const PhotoDetailsModal = (props) => {
       <img src={photo.fullimg} alt={photo.id} className="photo-details-modal__image" />
       </div>
 
-      {console.log(photo.similarPhotos)}
-
+      <PhotoFavButton id={photo.id} favoritesPhoto={favoritesPhoto} favorites={favorites}/>
       <div className="photo-details-modal__photographer-details photo-details-modal__header ">
         <img src={photo.user.profile} 
         alt={`${photo.user.username}'s profile`} 
@@ -29,11 +30,7 @@ const PhotoDetailsModal = (props) => {
         <p className="photo-details-modal__photographer-location">{`${photo.location.city}, ${photo.location.country}`}</p>
       </div>
       <div className='photo-details-modal__images'>
-        {Object.values(photo.similarPhotos).map((photo) => (
-          <span key={photo.id} >
-            <img src={photo.urls.regular} alt={photo.id} className='photo-details-modal__image'/>
-          </span>
-        ))}
+        <PhotoList photos={Object.values(photo.similarPhotos)} />
       </div>
     </div>
   )

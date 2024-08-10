@@ -22,6 +22,18 @@ const App = () => {
     setIsModalOpen(false);
     setSelectedPhoto(null);
   };
+  const [favorites, setFavorite] = useState([]);
+  const favoritesPhoto = (photoID, saved) => {
+    //adding photoid into array
+    if (!favorites.includes(photoID) && saved) {
+      setFavorite(prev => [...prev,photoID])
+      //removing photoid from array
+    } else if (favorites.includes(photoID) && !saved) {
+      setFavorite(prev => prev.filter(id => id !== photoID));
+    }
+    console.log(favorites)
+  }
+  
   return (
     <div className="App">
       {/* {photoArr.map((photo, index) => {
@@ -30,8 +42,8 @@ const App = () => {
         </>
       }
       )} */}
-      <HomeRoute photos={photos} topics={topics} openModal={openModal} />
-      <PhotoDetailsModal photo={selectedPhoto} onClose={closeModal} />
+      <HomeRoute photos={photos} topics={topics} openModal={openModal} favorites={favorites} favoritesPhoto={favoritesPhoto} />
+      <PhotoDetailsModal photo={selectedPhoto} onClose={closeModal} favorites={favorites} favoritesPhoto={favoritesPhoto}/>
     </div>
   );
 };
