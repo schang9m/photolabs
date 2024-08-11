@@ -22,6 +22,9 @@
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
+  &:hover {
+    background-color: red;
+  }
 }
 
 .photo-details-modal__images {
@@ -45,34 +48,60 @@
 
 .photo-details-modal__photographer-details {
   display: flex;
+  flex-direction: row; /* Align items horizontally */
+  align-items: center; /* Vertically center items */
   font-size: 16px;
+  margin-top: 8px;
 }
 
 .photo-details-modal__header {
   font-size: 18px;
   font-weight: 500;
   color: #1e1e1e;
-  margin-top: 24px;
   margin-bottom: 24px;
   width: 90%;
+  margin-left: 15px;
 }
 
-.photo-details-modal__photographer-location {
-  color: #838383;
-}
 .photo-details-modal__photographer-profile {
   object-fit: cover;
-  border-radius: 100%;
+  border-radius: 50%; 
   vertical-align: middle;
-  margin-right: 8px;
+  margin-right: 16px; /* Space between profile and text */
   width: 40px;
   height: 40px;
 }
 
-.photo-details-modal__photographer-info {
-  margin-top: 5px;
-  font-weight: 700;
-  font-size: 12px;
-  margin-left: 8px;
+.photo-details-modal__photographer-text {
+  display: flex;
+  flex-direction: column; /* Stack text elements vertically */
 }
 
+.photo-details-modal__photographer-location {
+  color: #838383;
+  font-size: 14px; /* Slightly smaller font size */
+  margin: 0; /* Remove default margins */
+}
+
+.photo-details-modal__photographer-info {
+  font-weight: 700;
+  font-size: 15px; /* Adjust font size as needed */
+  margin: 0; /* Remove default margins */
+}
+
+.photo-details-modal_fav{
+  margin-left: 30px;
+  margin-top: 8px;
+  position: absolute;  
+  top: 48px; /* Distance from the bottom of the container */
+  left: 10px;
+}
+
+.photo-details-modal__divider {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 8px 0; /* Adjust spacing around the line */
+}
+h4 {
+  margin: 0%;
+}

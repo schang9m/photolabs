@@ -6,6 +6,11 @@
   border-style: solid;
   border-radius: 8px;
   max-width: fit-content;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effect */
+  &:hover {
+    background-color: rgba(133, 110, 7, 0.54);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow effect */
+  }
 }
 
 .photo-list__image {
@@ -34,15 +39,22 @@
 
 .photo-list__user-details {
   display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
+.photo-list__user-text{
+  display: flex;
+  flex-direction: column;
+}
 .photo-list__user-info {
-  margin-top: 5px;
+  margin: 0;
   font-weight: 700;
-  font-size: 12px;
-  margin-left: 8px;
+  font-size: 15px;
 }
 
 .photo-list__user-location {
   color: #838383;
+  font-size: 14px;
+  margin: 0;
 }

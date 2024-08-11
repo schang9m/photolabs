@@ -12,6 +12,7 @@ const PhotoListItem = (props) => {
   const handleClick = () => {
     openModal({id, location, fullimg, user, similarPhotos})
   }
+  console.log(favorites,favoritesPhoto)
   return (
     <div className="photo-list__item" onClick={handleClick}>
       <PhotoFavButton id={id} favoritesPhoto={favoritesPhoto} favorites={favorites}/>
@@ -24,10 +25,10 @@ const PhotoListItem = (props) => {
         <img src={user.profile} 
         alt={`${user.username}'s profile`} 
         className='photo-list__user-profile'/>
-
-        <p className="photo-list__user-info">{user.username}</p>
-
-        <p className="photo-list__user-location">{`${location.city}, ${location.country}`}</p>
+        <div className="photo-list__user-text">
+          <p className="photo-list__user-info">{user.username}</p>
+          <p className="photo-list__user-location">{`${location.city}, ${location.country}`}</p>
+        </div>
       </div>
     </div>
   )

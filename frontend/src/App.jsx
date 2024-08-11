@@ -6,33 +6,20 @@ import topics from "mocks/topics";
 
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 // const photoArr = new Array(3).fill(sampleDataForPhotoListItem)
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = (photo) => {
-    setSelectedPhoto(photo);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedPhoto(null);
-  };
-  const [favorites, setFavorite] = useState([]);
-  const favoritesPhoto = (photoID, saved) => {
-    //adding photoid into array
-    if (!favorites.includes(photoID) && saved) {
-      setFavorite(prev => [...prev,photoID])
-      //removing photoid from array
-    } else if (favorites.includes(photoID) && !saved) {
-      setFavorite(prev => prev.filter(id => id !== photoID));
-    }
-    console.log(favorites)
-  }
+  const {
+    state,
+    favorites,
+    onPhotoSelect,
+    selectedPhoto,
+    updateToFavPhotoIds,
+    onLoadTopic,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
   
   return (
     <div className="App">
@@ -42,8 +29,8 @@ const App = () => {
         </>
       }
       )} */}
-      <HomeRoute photos={photos} topics={topics} openModal={openModal} favorites={favorites} favoritesPhoto={favoritesPhoto} />
-      <PhotoDetailsModal photo={selectedPhoto} onClose={closeModal} favorites={favorites} favoritesPhoto={favoritesPhoto}/>
+      <HomeRoute photos={photos} topics={topics} openModal={onPhotoSelect} favorites={favorites} favoritesPhoto={updateToFavPhotoIds} />
+      <PhotoDetailsModal photo={selectedPhoto} onClose={onClosePhotoDetailsModal} favorites={favorites} favoritesPhoto={updateToFavPhotoIds}/>
     </div>
   );
 };
