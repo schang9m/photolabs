@@ -1,8 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
 import './App.scss';
-import photos from "mocks/photos";
-import topics from "mocks/topics";
+
 
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
@@ -29,7 +27,7 @@ const App = () => {
         </>
       }
       )} */}
-      <HomeRoute photos={photos} topics={topics} openModal={onPhotoSelect} favorites={favorites} favoritesPhoto={updateToFavPhotoIds} />
+      <HomeRoute photos={state.photoData} topics={state.topicData} openModal={onPhotoSelect} favorites={favorites} favoritesPhoto={updateToFavPhotoIds} />
       <PhotoDetailsModal photo={selectedPhoto} onClose={onClosePhotoDetailsModal} favorites={favorites} favoritesPhoto={updateToFavPhotoIds}/>
     </div>
   );

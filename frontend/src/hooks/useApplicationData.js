@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 //The state object will contain the entire state of the application.
 // The updateToFavPhotoIds action can be used to set the favourite photos.
@@ -18,6 +18,8 @@ const initialState = {
   photoData: null,
   topicData: null,
   isModalOpen: false,
+  photoData: [],
+  topicData: []
 };
 
 const reducer = (state, action) => {
@@ -42,6 +44,18 @@ const reducer = (state, action) => {
 const useApplicationData  = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    fetch('/api/photos')
+    .then(res => res.json())
+    .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/topics')
+    .then(res => res.json())
+    .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}))
+  })
+
   const onPhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
@@ -62,6 +76,7 @@ const useApplicationData  = () => {
   };
 
   return {
+    state,
     onPhotoSelect,
     onClosePhotoDetailsModal,
     selectedPhoto: state.selectedPhoto,
