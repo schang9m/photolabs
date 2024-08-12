@@ -1,7 +1,7 @@
 .photo-details-modal {
   background-color: white;
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
-  position: absolute;
+  position: fixed;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -40%);
@@ -12,7 +12,10 @@
 }
 
 .photo-details-modal__close-button {
-  background-color: white;
+  top:0;
+  position:sticky;
+  background-color: grey;
+  opacity: 50%;
   border: none;
   color: white;
   text-align: center;
@@ -22,8 +25,12 @@
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
+  padding: 8px 16px; /* Added padding for better button sizing */
+  border-radius: 8px; /* Rounded corners for button */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  z-index: 1000; /* Ensure the button is above other content */
   &:hover {
-    background-color: red;
+    opacity: 100%;
   }
 }
 
@@ -91,7 +98,7 @@
 
 .photo-details-modal_fav{
   margin-left: 30px;
-  margin-top: 8px;
+  margin-top: 25px;
   position: absolute;  
   top: 48px; /* Distance from the bottom of the container */
   left: 10px;

@@ -5,7 +5,7 @@ import PhotoListItem from "./PhotoListItem";
 
 
 const PhotoList = (props) => {
-  const {photos, favoritesPhoto, openModal, favorites} = props
+  const { photos, favoritesPhoto, handlePhotoDetails, favorites } = props
   return (
     <ul className="photo-list">
       {photos.map((photo) => (
@@ -17,7 +17,7 @@ const PhotoList = (props) => {
             user={photo.user}
             favoritesPhoto={favoritesPhoto}
             similarPhotos={photo.similar_photos}
-            openModal={openModal}
+            handlePhotoDetails={handlePhotoDetails}
             favorites={favorites}
           />
         </li>

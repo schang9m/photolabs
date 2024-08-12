@@ -12,28 +12,27 @@ const App = () => {
   const {
     state,
     favorites,
-    onPhotoSelect,
     selectedPhoto,
     updateToFavPhotoIds,
-    onLoadTopic,
-    onClosePhotoDetailsModal,
+    handlePhotoDetails,
     fetchPhotosByTopic
   } = useApplicationData();
-  
+
   return (
     <div className="App">
-      <HomeRoute 
-      photos={state.photoByTopic.length > 0 ? state.photoByTopic : state.photoData} 
-      topics={state.topicData} 
-      openModal={onPhotoSelect} 
-      favorites={favorites} 
-      favoritesPhoto={updateToFavPhotoIds} 
-      fetchPhotosByTopic={fetchPhotosByTopic} />
+      <HomeRoute
+        photos={state.photoByTopic.length > 0 ? state.photoByTopic : state.photoData}
+        topics={state.topicData}
+        handlePhotoDetails={handlePhotoDetails}
+        favorites={favorites}
+        favoritesPhoto={updateToFavPhotoIds}
+        fetchPhotosByTopic={fetchPhotosByTopic} />
 
-      <PhotoDetailsModal photo={selectedPhoto} 
-      onClose={onClosePhotoDetailsModal} 
-      favorites={favorites} 
-      favoritesPhoto={updateToFavPhotoIds}/>
+      <PhotoDetailsModal
+        photo={selectedPhoto}
+        handlePhotoDetails={handlePhotoDetails}
+        favorites={favorites}
+        favoritesPhoto={updateToFavPhotoIds} />
     </div>
   );
 };

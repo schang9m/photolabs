@@ -12,7 +12,7 @@ export const ACTIONS = {
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 }
 const initialState = {
-  favorites:[],
+  favorites: [],
   selectedPhoto: null,
   photoData: null,
   topicData: null,
@@ -37,38 +37,41 @@ const reducer = (state, action) => {
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return { ...state, isModalOpen: !state.isModalOpen };
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
-      return {...state, photoByTopic:action.payload }
+      return { ...state, photoByTopic: action.payload }
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
 };
 
-const useApplicationData  = () => {
+const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     axios.get('/api/photos')
-    .then((response) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: response.data}))
+      .then((response) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: response.data }))
   }, [])
 
   useEffect(() => {
     axios.get('/api/topics')
-    .then((response) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: response.data}))
+      .then((response) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: response.data }))
   }, [])
 
   const fetchPhotosByTopic = (id) => {
     axios.get(`/api/topics/photos/${id}`)
-    .then((response) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: response.data}))
+      .then((response) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: response.data }))
   }
 
-  const onPhotoSelect = (photo) => {
-    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS }); 
-  };
 
-  const onClosePhotoDetailsModal = () => {
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS})
-    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: null})
+  const handlePhotoDetails = (photo) => {
+    if (photo) {
+      // Open modal and select photo
+      dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
+      dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+    } else {
+      // Close modal and deselect photo
+      dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+      dispatch({ type: ACTIONS.SELECT_PHOTO, payload: null });
+    }
   };
 
 
@@ -82,8 +85,7 @@ const useApplicationData  = () => {
 
   return {
     state,
-    onPhotoSelect,
-    onClosePhotoDetailsModal,
+    handlePhotoDetails,
     selectedPhoto: state.selectedPhoto,
     favorites: state.favorites,
     updateToFavPhotoIds,
