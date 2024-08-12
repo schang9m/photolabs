@@ -54,7 +54,7 @@ const useApplicationData  = () => {
     fetch('/api/topics')
     .then(res => res.json())
     .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}))
-  })
+  }, [])
 
   const onPhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
