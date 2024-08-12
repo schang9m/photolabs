@@ -17,18 +17,22 @@ const App = () => {
     updateToFavPhotoIds,
     onLoadTopic,
     onClosePhotoDetailsModal,
+    fetchPhotosByTopic
   } = useApplicationData();
   
   return (
     <div className="App">
-      {/* {photoArr.map((photo, index) => {
-        return <>
-          <PhotoListItem key={index} photo={photo} />
-        </>
-      }
-      )} */}
-      <HomeRoute photos={state.photoData} topics={state.topicData} openModal={onPhotoSelect} favorites={favorites} favoritesPhoto={updateToFavPhotoIds} />
-      <PhotoDetailsModal photo={selectedPhoto} onClose={onClosePhotoDetailsModal} favorites={favorites} favoritesPhoto={updateToFavPhotoIds}/>
+      <HomeRoute photos={state.photoData} 
+      topics={state.topicData} 
+      openModal={onPhotoSelect} 
+      favorites={favorites} 
+      favoritesPhoto={updateToFavPhotoIds} 
+      fetchPhotosByTopic={fetchPhotosByTopic} />
+
+      <PhotoDetailsModal photo={selectedPhoto} 
+      onClose={onClosePhotoDetailsModal} 
+      favorites={favorites} 
+      favoritesPhoto={updateToFavPhotoIds}/>
     </div>
   );
 };

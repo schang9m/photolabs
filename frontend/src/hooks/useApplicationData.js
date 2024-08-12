@@ -10,7 +10,8 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 }
 const initialState = {
   favorites:[],
@@ -19,7 +20,8 @@ const initialState = {
   topicData: null,
   isModalOpen: false,
   photoData: [],
-  topicData: []
+  topicData: [],
+  photoByTopic: []
 };
 
 const reducer = (state, action) => {
@@ -36,6 +38,8 @@ const reducer = (state, action) => {
       return { ...state, selectedPhoto: action.payload };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return { ...state, isModalOpen: !state.isModalOpen };
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return {...state, photoByTopic:action.payload }
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -55,6 +59,12 @@ const useApplicationData  = () => {
     .then(res => res.json())
     .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}))
   }, [])
+
+  const fetchPhotosByTopic = (id) => {
+    fetch(`/api/topics/photos/${id}`)
+    .then(res => res.json())
+    .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data}))
+  }
 
   const onPhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
@@ -82,6 +92,7 @@ const useApplicationData  = () => {
     selectedPhoto: state.selectedPhoto,
     favorites: state.favorites,
     updateToFavPhotoIds,
+    fetchPhotosByTopic
   };
 };
 

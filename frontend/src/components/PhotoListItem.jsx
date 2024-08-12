@@ -12,7 +12,7 @@ const PhotoListItem = (props) => {
   const handleClick = () => {
     openModal({id, location, fullimg, user, similarPhotos})
   }
-  console.log(favorites,favoritesPhoto)
+  
   return (
     <div className="photo-list__item" onClick={handleClick}>
       <PhotoFavButton id={id} favoritesPhoto={favoritesPhoto} favorites={favorites}/>
