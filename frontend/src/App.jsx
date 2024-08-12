@@ -22,7 +22,8 @@ const App = () => {
   
   return (
     <div className="App">
-      <HomeRoute photos={state.photoData} 
+      <HomeRoute 
+      photos={state.photoByTopic.length > 0 ? state.photoByTopic : state.photoData} 
       topics={state.topicData} 
       openModal={onPhotoSelect} 
       favorites={favorites} 
