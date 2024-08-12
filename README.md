@@ -22,3 +22,7 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+## functions
+This project allows you to have a selection of photos, where they are catagorized by different topics, and when you click on it, it would give you are more detail view along with the similar photos. 
+
+You can also favorite the photos as you like.
