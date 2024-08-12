@@ -1,9 +1,7 @@
 import { useEffect, useReducer } from "react";
+import axios from 'axios';
 
-//The state object will contain the entire state of the application.
-// The updateToFavPhotoIds action can be used to set the favourite photos.
-// The setPhotoSelected action can be used when the user selects a photo.
-// The onClosePhotoDetailsModal action can be used to close the modal.
+
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
@@ -49,26 +47,23 @@ const useApplicationData  = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch('/api/photos')
-    .then(res => res.json())
-    .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+    axios.get('/api/photos')
+    .then((response) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: response.data}))
   }, [])
 
   useEffect(() => {
-    fetch('/api/topics')
-    .then(res => res.json())
-    .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}))
+    axios.get('/api/topics')
+    .then((response) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: response.data}))
   }, [])
 
   const fetchPhotosByTopic = (id) => {
-    fetch(`/api/topics/photos/${id}`)
-    .then(res => res.json())
-    .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data}))
+    axios.get(`/api/topics/photos/${id}`)
+    .then((response) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: response.data}))
   }
 
   const onPhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS }); 
   };
 
   const onClosePhotoDetailsModal = () => {
