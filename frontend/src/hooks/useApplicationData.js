@@ -27,7 +27,7 @@ const reducer = (state, action) => {
     case ACTIONS.FAV_PHOTO_ADDED:
       return { ...state, favorites: [...state.favorites, action.payload] };
     case ACTIONS.FAV_PHOTO_REMOVED:
-      return { ...state, favorites: state.favorites.filter(id => id !== action.payload) };
+      return { ...state, favorites: state.favorites.filter(photo => photo.id !== action.payload.id) };
     case ACTIONS.SET_PHOTO_DATA:
       return { ...state, photoData: action.payload };
     case ACTIONS.SET_TOPIC_DATA:
@@ -75,12 +75,13 @@ const useApplicationData = () => {
   };
 
 
-  const updateToFavPhotoIds = (photoID) => {
-    const actionType = state.favorites.includes(photoID)
+  const updateToFavPhotoIds = (photo) => {
+    const isFavorite = state.favorites.some(fav => fav.id === photo.id);
+    const actionType = isFavorite
       ? ACTIONS.FAV_PHOTO_REMOVED
       : ACTIONS.FAV_PHOTO_ADDED;
 
-    dispatch({ type: actionType, payload: photoID });
+    dispatch({ type: actionType, payload: photo });
   };
 
   return {

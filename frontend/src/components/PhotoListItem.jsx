@@ -18,7 +18,13 @@ const PhotoListItem = (props) => {
 
   return (
     <div className="photo-list__item" >
-      <PhotoFavButton id={id} favoritesPhoto={favoritesPhoto} favorites={favorites} />
+      <PhotoFavButton id={id} location={location}
+      imageSource={imageSource}
+      user={user}
+      similarPhotos={similarPhotos}
+      handlePhotoDetails={handlePhotoDetails}
+      favoritesPhoto={favoritesPhoto} 
+      favorites={favorites} />
       <img src={regular}
         alt={`${user.username}'s picture`}
         id={id}

@@ -5,7 +5,8 @@ import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
-  const { photos, topics, handlePhotoDetails, favoritesPhoto, favorites, fetchPhotosByTopic } = props;
+  const { photos, topics, handlePhotoDetails, favoritesPhoto, favorites,
+    fetchPhotosByTopic, handleFavBadgeClick } = props;
   const isFavPhotoExist = favorites.length > 0;
 
 
@@ -15,6 +16,8 @@ const HomeRoute = (props) => {
         topics={topics}
         isFavPhotoExist={isFavPhotoExist}
         fetchPhotosByTopic={fetchPhotosByTopic}
+        favorites={favorites}
+        handleFavBadgeClick={handleFavBadgeClick}
       />
       <PhotoList
         photos={photos}

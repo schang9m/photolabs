@@ -1,13 +1,17 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const { favoritesPhoto, id, favorites = [] } = props;
-  const select = favorites.includes(id);
+  const { id, location, imageSource, user, 
+    favoritesPhoto, similarPhotos,
+    handlePhotoDetails, favorites  = [] } = props;
+
+  const select = favorites.some(photo => photo.id === id);
+
   const handleClick = () => {
-    favoritesPhoto(id);
+    favoritesPhoto({id, location, imageSource, user, handlePhotoDetails, similarPhotos});
   }
 
   return (
