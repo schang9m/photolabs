@@ -27,5 +27,7 @@ This project allows you to have a selection of photos, where they are catagorize
 
 You can also favorite the photos as you like.
 
+UPDATE: I also added a function that allows you to view the favorite photos by clicking on the heart icon on the right of the navigator 
+
 ## screenshot
 !["Gif demo"](https://github.com/schang9m/photolabs/blob/6b691ff772ff33dfd32a2fde335b291921fd8c1e/docs/photolab_demo.gif)
